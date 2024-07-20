@@ -5,8 +5,7 @@ int solicitar_tamanho_piramide(void);
 int main(void)
 {
     // Define o tamanho da piramide
-    int tamanhoPiramide;
-    tamanhoPiramide = solicitar_tamanho_piramide();
+    int tamanhoPiramide = solicitar_tamanho_piramide();
 
     // Imprime a piramide
     int progressaoDaPiramide = 1;

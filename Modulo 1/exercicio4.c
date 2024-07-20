@@ -5,8 +5,7 @@ long long solicitar_numero_cartao(void);
 int main(void)
 {
     // Define o numero do cartao
-    long long numeroCartao;
-    numeroCartao = solicitar_numero_cartao();
+    long long numeroCartao = solicitar_numero_cartao();
 
     // Variaveis auxiliares
     int primNumCartao;

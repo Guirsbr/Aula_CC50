@@ -1,13 +1,16 @@
 // READABILITY
 
+#include <ctype.h>
 #include <math.h>
 #include <stdio.h>
 #include <string.h>
 
+const int tamanhoTexto = 1000;
+
 int main(void)
 {
     // Define o texto para analisar
-    char textoAnalisar[1000];
+    char textoAnalisar[tamanhoTexto];
     printf("Texto: ");
     fgets(textoAnalisar, sizeof(textoAnalisar), stdin);
 
@@ -17,8 +20,7 @@ int main(void)
     int contagemPalavras = 1;
     for (int i = 0; i < strlen(textoAnalisar); i++)
     {
-        if ((textoAnalisar[i] >= 'a' && textoAnalisar[i] <= 'z') ||
-            (textoAnalisar[i] >= 'A' && textoAnalisar[i] <= 'Z'))
+        if (isalpha(textoAnalisar[i]))
         {
             contagemLetras++;
         }
@@ -31,7 +33,7 @@ int main(void)
             contagemPalavras++;
         }
     }
-    
+
     // Faz o calculo e mostra o resultado
     int indice = round(0.0588 * ((contagemLetras * 100.0) / contagemPalavras) -
                        0.296 * ((contagemSentenca * 100.0) / contagemPalavras) - 15.8);

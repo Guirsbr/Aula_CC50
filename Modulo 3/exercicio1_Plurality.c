@@ -4,9 +4,12 @@
 #include <stdio.h>
 #include <string.h>
 
-#define quantidadeMaximaCandidatos 9
-#define tamanhoNomeCandidato 40
+#define QUANTIDADE_MAXIMA_CANDIDATOS 9
+#define QUANTIDADE_MAXIMA_VOTOS 100
+#define TAMANHO_NOME_CANDIDATO 40
 
+
+bool comparar_duas_strings(char *string1, size_t lenString1, char *string2, size_t lenString2);
 void imprimir_ganhador(void);
 int solicitar_quantidade_votos(void);
 bool votar(char *name);
@@ -17,21 +20,26 @@ typedef struct
     int quantidadeVotos;
 } candidato;
 
-candidato listaCandidatos[quantidadeMaximaCandidatos - 1];
+candidato listaCandidatos[QUANTIDADE_MAXIMA_CANDIDATOS - 1];
 
 int contagemCandidatos;
 
 int main(int argc, char *argv[])
 {
     // Filtra os possiveis erros de input
-    if (argc < 2 || argc > 10)
+    if (argc < 2)
     {
-        printf("Usage: ./plurality name1 name2 ...(max 9)\n");
+        printf("Uso: runoff [candidato ...]\n");
         return 1;
     }
 
     // Coloca os canditatos em uma lista
     contagemCandidatos = argc - 1;
+    if (contagemCandidatos > QUANTIDADE_MAXIMA_CANDIDATOS)
+    {
+        printf("O numero maximo de canditatos e %i\n", QUANTIDADE_MAXIMA_CANDIDATOS);
+        return 2;
+    }
     for (int i = 0; i < contagemCandidatos; i++)
     {
         for (int j = 0; j < strlen(argv[i + 1]); j++)
@@ -43,23 +51,45 @@ int main(int argc, char *argv[])
 
     // Solicita a quantidade de eleitores/votos
     int quantidadeVotos = solicitar_quantidade_votos();
+    if (quantidadeVotos > QUANTIDADE_MAXIMA_VOTOS)
+    {
+        printf("Quantidade maxima de votos e %i\n", QUANTIDADE_MAXIMA_VOTOS);
+        return 3;
+    }
 
     // Solicita o voto para cada eleitor
     getchar();
     for (int i = 1; i < quantidadeVotos + 1; i++)
     {
-        char candidatoVoto[tamanhoNomeCandidato];
+        char candidatoVoto[TAMANHO_NOME_CANDIDATO];
         printf("Voto %d: ", i);
         fgets(candidatoVoto, sizeof(candidatoVoto), stdin);
         if (!votar(candidatoVoto))
         {
             printf("Voto invalido.\n");
+            return 4;
         }
     }
 
     // Mostra na tela o(s) ganhador(es)
     imprimir_ganhador();
     return 0;
+}
+
+bool comparar_duas_strings(char *string1, size_t lenString1, char *string2, size_t lenString2)
+{
+    if (lenString1 != lenString2)
+    {
+        return false;
+    }
+    for (int i = 0; i < lenString1; i++)
+    {
+        if (string1[i] != string2[i])
+        {
+            return false;
+        }
+    }
+    return true;
 }
 
 void imprimir_ganhador(void)
@@ -114,15 +144,8 @@ bool votar(char *nome)
 
     for (int i = 0; i < contagemCandidatos; i++)
     {
-        bool nomesIguais = true;
-        for (int j = 0; j < strlen(nome) - 1; j++)
-        {
-            if (nome[j] != listaCandidatos[i].nome[j])
-            {
-                nomesIguais = false;
-            }
-        }
-        if (nomesIguais == true)
+        if (comparar_duas_strings(listaCandidatos[i].nome,
+            strlen(listaCandidatos[i].nome), nome, strlen(nome) - 1))
         {
             listaCandidatos[i].quantidadeVotos++;
             achouCandidato = true;

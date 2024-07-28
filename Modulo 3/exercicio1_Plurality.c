@@ -9,14 +9,14 @@
 #define TAMANHO_NOME_CANDIDATO 40
 
 
-bool comparar_duas_strings(char *string1, size_t lenString1, char *string2, size_t lenString2);
-void imprimir_ganhador(void);
-int solicitar_quantidade_votos(void);
+bool compararDuasStrings(char *string1, size_t lenString1, char *string2, size_t lenString2);
+void imprimirGanhador(void);
+int solicitarQuantidadeVotos(void);
 bool votar(char *name);
 
 typedef struct
 {
-    char nome[40];
+    char nome[TAMANHO_NOME_CANDIDATO];
     int quantidadeVotos;
 } candidato;
 
@@ -50,7 +50,7 @@ int main(int argc, char *argv[])
     }
 
     // Solicita a quantidade de eleitores/votos
-    int quantidadeVotos = solicitar_quantidade_votos();
+    int quantidadeVotos = solicitarQuantidadeVotos();
     if (quantidadeVotos > QUANTIDADE_MAXIMA_VOTOS)
     {
         printf("Quantidade maxima de votos e %i\n", QUANTIDADE_MAXIMA_VOTOS);
@@ -72,11 +72,11 @@ int main(int argc, char *argv[])
     }
 
     // Mostra na tela o(s) ganhador(es)
-    imprimir_ganhador();
+    imprimirGanhador();
     return 0;
 }
 
-bool comparar_duas_strings(char *string1, size_t lenString1, char *string2, size_t lenString2)
+bool compararDuasStrings(char *string1, size_t lenString1, char *string2, size_t lenString2)
 {
     if (lenString1 != lenString2)
     {
@@ -92,7 +92,7 @@ bool comparar_duas_strings(char *string1, size_t lenString1, char *string2, size
     return true;
 }
 
-void imprimir_ganhador(void)
+void imprimirGanhador(void)
 {
     int maiorVoto = 0;
     for (int i = 0; i < contagemCandidatos; i++)
@@ -119,7 +119,7 @@ void imprimir_ganhador(void)
     }
 }
 
-int solicitar_quantidade_votos(void)
+int solicitarQuantidadeVotos(void)
 {
     int votos = 1;
     int votosLido = 0;
@@ -134,7 +134,7 @@ int solicitar_quantidade_votos(void)
             votosLido = scanf("%d", &votos);
         }
     }
-    while (votos < 1);
+    while (votos < 1 || votos > QUANTIDADE_MAXIMA_VOTOS);
     return votos;
 }
 
@@ -144,7 +144,7 @@ bool votar(char *nome)
 
     for (int i = 0; i < contagemCandidatos; i++)
     {
-        if (comparar_duas_strings(listaCandidatos[i].nome,
+        if (compararDuasStrings(listaCandidatos[i].nome,
             strlen(listaCandidatos[i].nome), nome, strlen(nome) - 1))
         {
             listaCandidatos[i].quantidadeVotos++;

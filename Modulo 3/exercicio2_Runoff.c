@@ -8,18 +8,18 @@
 #define QUANTIDADE_MAXIMA_VOTANTES 100
 #define TAMANHO_NOME_CANDIDATO 40
 
-int achar_minimo(void);
-bool comparar_duas_strings(char *string1, size_t lenString1, char *string2, size_t lenString2);
+int acharMinimo(void);
+bool compararDuasStrings(char *string1, size_t lenString1, char *string2, size_t lenString2);
 void eliminar(int menorQuantidadeVotos);
 bool empate(int menorQuantidadeVotos);
-bool imprimir_ganhador(void);
-int solicitar_quantidade_votantes(void);
+bool imprimirGanhador(void);
+int solicitarQuantidadeVotantes(void);
 void tabular(void);
 bool votar(int votante, int rank, char *nome);
 
 typedef struct
 {
-    char nome[40];
+    char nome[TAMANHO_NOME_CANDIDATO];
     int quantidadeVotos;
     bool eliminado;
 } candidato;
@@ -55,8 +55,8 @@ int main(int argc, char *argv[])
         listaCandidatos[i].eliminado = false;
     }
 
-    // Solicita a quantidade de eleitores/votos
-    contagemVotantes = solicitar_quantidade_votantes();
+    // Solicita a quantidade de votantes
+    contagemVotantes = solicitarQuantidadeVotantes();
     if (contagemVotantes > QUANTIDADE_MAXIMA_VOTANTES)
     {
         printf("Quantidade maxima de votantes e %i\n", QUANTIDADE_MAXIMA_VOTANTES);
@@ -86,13 +86,13 @@ int main(int argc, char *argv[])
     {
         tabular();
 
-        bool alguemGanhou = imprimir_ganhador();
+        bool alguemGanhou = imprimirGanhador();
         if (alguemGanhou)
         {
             return 0;
         }
 
-        int menorQuantidadeVotos = achar_minimo();
+        int menorQuantidadeVotos = acharMinimo();
         bool foiEmpate = empate(menorQuantidadeVotos);
 
         if (foiEmpate)
@@ -120,7 +120,7 @@ int main(int argc, char *argv[])
     }
 }
 
-int achar_minimo(void)
+int acharMinimo(void)
 {
     int menorQuantidadeVotos;
     bool primeiroDadoObtido = false;
@@ -142,7 +142,7 @@ int achar_minimo(void)
     return menorQuantidadeVotos;
 }
 
-bool comparar_duas_strings(char *string1, size_t lenString1, char *string2, size_t lenString2)
+bool compararDuasStrings(char *string1, size_t lenString1, char *string2, size_t lenString2)
 {
     if (lenString1 != lenString2)
     {
@@ -184,7 +184,7 @@ bool empate(int menorQuantidadeVotos)
     return true;
 }
 
-bool imprimir_ganhador(void)
+bool imprimirGanhador(void)
 {
     for (int i = 0; i < contagemCandidatos; i++)
     {
@@ -201,7 +201,7 @@ bool imprimir_ganhador(void)
     return false;
 }
 
-int solicitar_quantidade_votantes(void)
+int solicitarQuantidadeVotantes(void)
 {
     int votantes = 1;
     int votantesLido = 0;
@@ -216,7 +216,7 @@ int solicitar_quantidade_votantes(void)
             votantesLido = scanf("%d", &votantes);
         }
     }
-    while (votantes < 1);
+    while (votantes < 1 || votantes > QUANTIDADE_MAXIMA_VOTANTES);
     return votantes;
 }
 
@@ -239,7 +239,7 @@ bool votar(int votante, int rank, char *nome)
 {
     for (int i = 0; i < contagemCandidatos; i++)
     {
-        if (comparar_duas_strings(listaCandidatos[i].nome,
+        if (compararDuasStrings(listaCandidatos[i].nome,
             strlen(listaCandidatos[i].nome), nome, strlen(nome) - 1))
         {
             preferencias[votante][rank] = i;

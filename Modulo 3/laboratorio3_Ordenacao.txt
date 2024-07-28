@@ -1,0 +1,11 @@
+sort1 uses: bubble sort
+
+How do you know?: Porque qaundo os 2 primeiros arquivos de ordenação são colocados em um arquivo de numeros em ordem inversa, o 2º possui eficiencia muito maior logo o 1º é o bubble sorte, que possui big O(n2).
+
+sort2 uses: merge sort
+
+How do you know?: Seguindo a lógico da explicação acima, o 2º algoritmo de ordenação é o merge sort, que possui big O(n log n).
+
+sort3 uses: selection sort
+
+How do you know?: Porque quando os 3 arquivos de ordenação são colocados em um arquivo de numeros já ordenados eles obtiveram os seguintes resultados: 1: 0.878, 2: 1.059 e 3: 2.806, uma vez que o selection sort possui big Ômega (n2), conclui-se o 3º é selection sort.

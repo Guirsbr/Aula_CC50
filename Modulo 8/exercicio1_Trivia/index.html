@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+        <link href="styles.css" rel="stylesheet">
+        <title>Trivia!</title>
+        <script src="script.js" defer></script>
+    </head>
+    <body>
+        <div class="header">
+            <h1>Trivia!</h1>
+        </div>
+
+        <div class="container">
+            <div class="section">
+                <h2>Parte 1: Múltiplas Escolhas </h2>
+                <hr>
+                <div>
+                    <h3>Questão 1: Аnаlіѕе аѕ ѕеguіntеѕ frаѕеѕ е аѕѕіnаlе а аltеrnаtіvа соrrеtа: І- Соnјuntо dе рrоgrаmаѕ. ІІ- Uѕuárіоѕ оu рrоfіѕѕіоnаіѕ еm ТІ. ІІІ- Раrtе fíѕіса dо соmрutаdоr.</h3>
+                    <button class="button" id="botao1questao1" onclick="respostaME(1, 1, false)">I- Hardware, II- Software, III- Peopleware.</button>
+                    <button class="button" id="botao2questao1" onclick="respostaME(2, 1, false)">I- Software, II- Firmware, III- Hardware.</button>
+                    <button class="button" id="botao3questao1" onclick="respostaME(3, 1, true)">I- Software, II- Peopleware, III- Hardware.</button>
+                    <button class="button" id="botao4questao1" onclick="respostaME(4, 1, false)">I- Hardware, II- Firmware, III- Software.</button>
+                </div>
+                <div>   
+                    <text class="textoResposta" id="textoRespostaIncorretoME1"></text>
+                </div>
+                <br>
+                <div>
+                    <h3>Questão 2: HTML é uma linguagem de:</h3>
+                    <button class="button" id="botao1questao2" onclick="respostaME(1, 2, false)">Programação.</button>
+                    <button class="button" id="botao2questao2" onclick="respostaME(2, 2, true)">Marcação.</button>
+                    <button class="button" id="botao3questao2" onclick="respostaME(3, 2, false)">Visualização.</button>
+                    <button class="button" id="botao4questao2" onclick="respostaME(4, 2, false)">Edição de textos.</button>
+                </div>
+                <div>   
+                    <text class="textoResposta" id="textoRespostaIncorretoME2"></text>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Part 2: Resposta Escrita</h2>
+                <hr>
+                <div>
+                    <h3>Questão 1: Se um profissional está criando um site em HTML e ele quiser colocar uma barra horizontal em sua página, qual as letras da tag que ele deve usar?</h3>
+                    <form onsubmit="respostaRE(1); return false;">
+                        <input id="inputRespostaRE1" autocomplete="off" placeholder="Resposta" type="text">
+                        <input type="submit" class="button">
+                    </form>
+                    <div>   
+                        <text class="textoResposta" id="textoRespostaIncorretoRE1"></text>
+                    </div>
+                </div>
+                <br>
+                <div>
+                    <h3>Questão 2: Se um profissional está criando um site em HTML e ele quiser colocar uma quebra de linha em sua página, qual as letras da tag que ele deve usar?</h3>
+                    <form onsubmit="respostaRE(2); return false;">
+                        <input id="inputRespostaRE2" autocomplete="off" placeholder="Resposta" type="text">
+                        <input type="submit" class="button">
+                    </form>
+                    <div>   
+                        <text class="textoResposta" id="textoRespostaIncorretoRE2"></text>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,194 @@
+body {
+    background-image: url("../img/imagem_de_fundo.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;  
+}
+
+header {
+    background-color: #1B1D2D;
+    color: #f8f8f8;
+    width: 100%;
+    padding-bottom: 1.5vw;
+}
+
+main {
+    color: #1B1D2D;
+    margin-top: 1vw;
+}
+
+footer {
+    background-color: #1B1D2D;
+    color: #f8f8f8;
+    margin-top: auto;
+    height: 3vw;
+    font-size: 1vw;
+    text-align: center;
+}
+
+#container-principal {
+    background-color: #f8f8f8;
+    min-height: 110vh;
+    width: 70vw;
+    position: relative;
+    left: 15%;
+    right: 15%;
+    padding: 0px;
+}
+
+#container-principal_flex {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+}
+
+.texto-header {
+    padding-left: 4vh;
+    font-size: 1vw;
+}
+
+#nome-header {
+    padding-top: 4vh;
+    padding-bottom: 2vh;
+    font-size: 2.8vw;
+    font-weight: bold;
+    color: white;
+}
+
+.container-contatos_header{
+    display: flex;
+    float: right;
+    flex-wrap: wrap;
+    flex-direction: row;
+    width: 26vw;
+    align-items: center;
+    font-size: 0.8vw;
+}
+
+.colunas-contatos_header {
+    align-self: center;
+    margin: 0;
+    color: #f8f8f8;
+    text-decoration: none;
+    margin-top: 0.5vw;
+}
+
+.texto-contatos_header {
+    height: 1vw;
+    width: 11vw;
+    margin-left: 1vw;
+}
+
+.imagens-contatos_header {
+    height: 1vw;
+    width: 1vw;
+    margin-top: 1vw;
+}
+
+.nav-underline .nav-item .nav-link {
+    color: #1B1D2D !important;
+}
+
+.texto-footer {
+    padding-top: 0.7em;
+    margin-left: 0;
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1100px) {
+    footer {
+        height: 4.5vw;
+        font-size: 1.5vw;
+    }
+    
+    .texto-header {
+        font-size: 1.8vw;
+    }
+
+    #container-principal {
+        width: 100vw;
+        left: 0%;
+        right: 0%;
+    }
+
+    #nome-header {
+        font-size:4.2vw;
+    }
+
+    .container-contatos_header{
+        width: 52vw;
+        font-size: 1.8vw;
+    }
+    
+    .colunas-contatos_header {
+        margin-top: 0vw;
+    }
+    
+    .texto-contatos_header {
+        height: 1vw;
+        width: 23vw;
+        margin-left: 1vw;
+    }
+    
+    .imagens-contatos_header {
+        height: 1.5vw;
+        width: 1.5vw;
+        margin-top: 2vw;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    header {
+        height: 50vw;
+    }
+
+    footer {
+        height: 6vw;
+        font-size: 2vw;
+    }
+
+    #container-principal {
+        width: 100vw;
+        left: 0%;
+        right: 0%;
+    }
+
+    .texto-header {
+        font-size: 2.8vw;
+    }
+
+    #nome-header {
+        font-size:6.4vw;
+    }
+
+    .container-contatos_header{
+        float: none;
+        width: 85vw;
+        font-size: 2.8vw;
+        margin-left: 5vw;
+    }
+    
+    .texto-contatos_header {
+        height: 1vw;
+        width: 38vw;
+    }
+    
+    .imagens-contatos_header {
+        height: 3vw;
+        width: 3vw;
+        margin-top: 4vw;
+    }
+
+    .nav-underline {
+        font-size: 3vw !important;
+    }
+}
+
+
+@media only screen and (max-width: 375px) {
+    header {
+        height: 60vw;
+    }
+}
+

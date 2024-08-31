@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Quote
+{% endblock %}
+
+{% block main %}
+    <form action="/quote" method="post">
+        <div class="mb-3">
+            <input autofocus class="form-control mx-auto w-auto" name="stock_symbol" placeholder="Stock Symbol" type="search">
+        </div>
+        <button class="btn btn-primary" type="submit">Quote</button>
+    </form>
+    {% if quoted %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Symbol</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{stock_quote.symbol}}</td>
+                    <td>{{stock_quote.price}}</td>
+                </tr>
+            </tbody>
+        </table>
+    {% endif %}
+{% endblock %}

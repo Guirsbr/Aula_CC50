@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Quote
+{% endblock %}
+
+{% block main %}
+    <div class="container_tittles-index">
+        <h2>Cash: {{ user_db["cash"] }}</h2>
+        <h2>Cash with stocks values: {{ user_db["total_cash"] }}</h2>
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>Symbol</th>
+                <th>Number of Shares</th>
+                <th>Price</th>
+                <th>Total Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for wallet in wallets_db %}
+                <tr>
+                    <td>{{ wallet["symbol"] }}</td>
+                    <td>{{ wallet["quantity"] }}</td>
+                    <td>{{ wallet["price"] }}</td>
+                    <td>{{ wallet["total_price"] }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
